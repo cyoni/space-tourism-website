@@ -54,6 +54,7 @@ h4,
 h5,
 p,
 figure,
+ul,
 picture {
   margin: 0;
 }
@@ -223,9 +224,78 @@ select {
   background-position: bottom center;
 }
 
+.mobile-menu-toggle {
+  display: none;
+}
+
+.primary-nav {
+  list-style: none;
+  font-size: var(--fs-400);
+  --gap: 8rem;
+}
+
+
+
+@media (max-width: 35rem) {
+  /* ! ! ! Mobile only ! ! ! */
+
+  .mobile-menu-toggle {
+    display: block;
+    z-index: 20;
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    background-image: url("./assets/shared/icon-hamburger.svg");
+    background-color: transparent;
+    border: none;
+    width: 25px;
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    
+  }
+
+  .primary-nav {
+    position: fixed;
+    --gap: 0;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 30vw;
+    z-index: 10;
+    background: hsl(var(--clr-dark) / 0.95);
+    padding-block: min(10rem, 20vh);
+    padding-inline: 2rem;
+  }
+
+  @supports (backdrop-filter: blur(0)) {
+    .primary-nav {
+      background-color: hsl(var(--clr-dark) / 0.1);
+      backdrop-filter: blur(1rem);
+    }
+  }
+
+  .primary-nav > * {
+    --underline-gap: 1rem;
+  }
+  .primary-nav > .active {
+    border-bottom: none;
+  }
+}
+
 @media (min-width: 35rem) {
   .home {
     background-image: url("./assets/home/background-home-tablet.jpg");
+  }
+
+  nav {
+    display: flex;
+    position: relative;
+    width: auto;
+    background-color: hsl(var(--clr-dark) / 0.5);
+    backdrop-filter: 0;
+    z-index: 10;
+    height: auto;
   }
 
   .grid-container--home {
@@ -262,11 +332,6 @@ select {
   }
 }
 
-.primary-nav {
-  --gap: 8rem;
-  list-style: none;
-}
-
 .primary-nav > li {
   a {
     text-decoration: none;
@@ -281,18 +346,18 @@ select {
   color: hsl(var(--clr-white));
 }
 
-.primary-nav-underline > li {
+.primary-nav > li {
   cursor: pointer;
-  padding: 2rem 0;
+  padding: var(--underline-gap, 2rem) 0;
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
   transition: border-color 200ms ease-in;
 }
 
-.primary-nav-underline > li:hover {
+.primary-nav > li:hover {
   border-color: hsl(var(--clr-white) / 0.5);
 }
 
-.primary-nav-underline > .active {
+.primary-nav > .active {
   color: hsl(var(--clr-white) / 1);
   border-color: hsl(var(--clr-white) / 1);
 }
