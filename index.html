@@ -16,19 +16,25 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <script src="index.js" defer></script>
 
     <title>Frontend Mentor | Space tourism website</title>
   </head>
   <body class="home">
     <header class="primary-header flex">
+      <img
+        src="./assets/shared/logo.svg"
+        alt="space tourism logo"
+        class="logo"
+      />
 
-      <img src="./assets/shared/logo.svg" alt="space tourism logo" class="logo">
-
-      <button class="mobile-menu-toggle"></button>
+      <button
+        class="mobile-menu-toggle"
+        aria-controls="primary-nav"
+        aria-expanded="false"
+      ></button>
       <nav>
-        <ul
-          class="primary-nav flex" 
-        >
+        <ul class="primary-nav flex" data-visibility="false">
           <li class="active text-white">
             <a href="index.html"><span>00</span>Home</a>
           </li>
