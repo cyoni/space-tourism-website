@@ -56,6 +56,7 @@ p,
 figure,
 ul,
 picture {
+  padding: 0;
   margin: 0;
 }
 
@@ -228,12 +229,20 @@ select {
   display: none;
 }
 
+.primary-header {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 1.5rem clamp(1.5rem, 5vw, 2rem);
+}
+
 .primary-nav {
   list-style: none;
   font-size: var(--fs-400);
-  --gap: 8rem;
-  transform: translateX(100%);
-  transition: transform 0.5s ease-in-out;
+  --gap: clamp(1rem, 5vw, 5rem);
+  background: hsl(var(--clr-white) / 0.05);
 }
 
 @media (max-width: 35rem) {
@@ -251,6 +260,17 @@ select {
     width: 25px;
     aspect-ratio: 1;
     background-repeat: no-repeat;
+  }
+
+  .primary-nav {
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(100%);
+  }
+
+  @supports (backdrop-filter: blur(0)) {
+    .primary-nav {
+      background-color: hsl(var(--clr-dark) / 0.1);
+    }
   }
 
   .primary-nav[data-visibility="true"] {
@@ -276,16 +296,8 @@ select {
     bottom: 0;
     left: 30vw;
     z-index: 10;
-    background: hsl(var(--clr-dark) / 0.95);
     padding-block: min(10rem, 20vh);
     padding-inline: 2rem;
-  }
-
-  @supports (backdrop-filter: blur(0)) {
-    .primary-nav {
-      background-color: hsl(var(--clr-dark) / 0.1);
-      backdrop-filter: blur(1rem);
-    }
   }
 
   .primary-nav > * {
@@ -296,7 +308,12 @@ select {
   }
 }
 
+/* tablet */
 @media (min-width: 35rem) {
+  .primary-nav {
+    padding-inline: clamp(3rem, 8vw, 8rem);
+  }
+
   .home {
     background-image: url("./assets/home/background-home-tablet.jpg");
   }
@@ -306,7 +323,7 @@ select {
     position: relative;
     width: auto;
     background-color: hsl(var(--clr-dark) / 0.5);
-    backdrop-filter: 0;
+    backdrop-filter: blur(1rem);
     z-index: 10;
     height: auto;
   }
@@ -317,9 +334,35 @@ select {
   }
 }
 
+/* tablet and desktop */
+@media ((min-width: 35rem) and (max-width: 44.99rem)) {
+  .primary-nav a > span {
+    display: none;
+  }
+}
+
+/* desktop */
 @media (min-width: 45rem) {
+  nav {
+    order: 2;
+  }
+  .primary-header {
+    margin-top: 2rem;
+  }
+
   .home {
     background-image: url("./assets/home/background-home-desktop.jpg");
+  }
+
+  .primary-header::after {
+    content: "";
+    position: relative;
+    order: 1;
+    width: 100%;
+    right: -15px;
+    z-index: 20;
+    height: 1px;
+    background-color: hsl(var(--clr-light) / 0.5);
   }
 
   .grid-container {
