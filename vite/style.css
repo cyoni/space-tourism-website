@@ -151,7 +151,7 @@ p {
 }
 
 /* set up the body */
-body {
+.page-wrapper {
   font-family: var(--ff-sans-normal);
   line-height: 1.5;
   min-height: 100vh;
@@ -232,6 +232,7 @@ select {
 .primary-header {
   justify-content: space-between;
   align-items: center;
+  --gap: 0;
 }
 
 .logo {
@@ -243,6 +244,7 @@ select {
   font-size: var(--fs-400);
   --gap: clamp(1rem, 5vw, 5rem);
   background: hsl(var(--clr-white) / 0.05);
+  backdrop-filter: blur(1rem);
 }
 
 @media (max-width: 35rem) {
@@ -323,7 +325,6 @@ select {
     position: relative;
     width: auto;
     background-color: hsl(var(--clr-dark) / 0.5);
-    backdrop-filter: blur(1rem);
     z-index: 10;
     height: auto;
   }
@@ -359,7 +360,7 @@ select {
     position: relative;
     order: 1;
     width: 100%;
-    right: -15px;
+    right: -50px;
     z-index: 20;
     height: 1px;
     background-color: hsl(var(--clr-light) / 0.5);
