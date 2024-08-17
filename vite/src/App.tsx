@@ -1,35 +1,21 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "../style.css";
-import Header from "./components/Header";
+import Home from "./pages/Home";
+import Layout from "./components/Layout";
+import ScreenContent from "./pages/ScreenContent";
+import Destination from "./pages/Destination";
 
 function App() {
   return (
-    <div className="page-wrapper home">
-      <Header />
-      <main className="grid-container grid-container--home">
-        <div>
-          <h1 className="fs-500 text-accent ff-sans-cond uppercase letter-spacing-1">
-            So, you want to travel to
-            <span className="text-white fs-900">Space</span>
-          </h1>
-
-          <p>
-            Lets face it; if you want to go to space, you might as well
-            genuinely go to outer space and not hover kind of on the edge of it.
-            Well sit back, and relax because well give you a truly out of this
-            world experience!
-          </p>
-        </div>
-
-        <div>
-          <a
-            href="explore.html"
-            className="large-button uppercase ff-serif fs-600 text-dark bg-white"
-          >
-            Explore
-          </a>
-        </div>
-      </main>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/destination" element={<Destination />} />
+          {/* <Route path="*" element={<ScreenContent />} /> */}
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

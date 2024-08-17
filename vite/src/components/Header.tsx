@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-function MenuNav() {
+function Header() {
   const [visibility, setVisibility] = useState(false);
 
   const toggleMenu = () => {
     setVisibility((prev) => !prev);
   };
-
 
   return (
     <header className="primary-header flex">
@@ -26,14 +25,17 @@ function MenuNav() {
         onClick={toggleMenu}
       ></button>
       <nav>
-        <ul className="primary-nav flex" data-visibility={visibility}>
-          <li className="active text-white">
-            <a href="index.html">
+        <ul
+          className="tabs primary-nav flex underline-tab"
+          data-visibility={visibility}
+        >
+          <li className="active">
+            <a href="/">
               <span aria-hidden="true">00</span>Home
             </a>
           </li>
-          <li className="text-white">
-            <a href="destination.html">
+          <li>
+            <a href="/destination">
               <span aria-hidden="true">01</span>Destination
             </a>
           </li>
@@ -53,4 +55,4 @@ function MenuNav() {
   );
 }
 
-export default MenuNav;
+export default Header;
