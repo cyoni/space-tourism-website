@@ -204,6 +204,10 @@ select {
   gap: var(--gap, 1rem);
 }
 
+.flow > * + * {
+  margin-top: var(--flow-gap, 0.5rem);
+}
+
 .container {
   padding-inline: 2em;
   margin-inline: auto;
@@ -251,14 +255,41 @@ select {
   }
 }
 
+.grid-container--crew {
+  grid-template-areas:
+    "title"
+    "content"
+    "tabs"
+    "image";
+
+  --grid-gap: 1.5rem;
+
+  .page-title {
+    grid-area: title;
+  }
+
+  .content--crew {
+    grid-area: content;
+    --flow-gap: 1rem;
+  }
+
+  .image--crew {
+    grid-area: image;
+  }
+
+  .tabs--crew {
+    grid-area: tabs;
+  }
+}
+
 .grid-container--destination > * {
   --gap: 2rem;
 }
 
-.grid-container--destination > img {
+.grid-container--destination > img,
+.grid-container--crew .image--crew {
   max-width: 60%;
 }
-
 
 .grid-container--destination .additional-info {
   justify-content: center;
@@ -302,10 +333,38 @@ select {
 
 .tabs {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--tab-gap, 1.5rem);
   list-style: none;
 
   --underline-gap: 0.75rem;
+}
+
+.tabs--crew {
+  --tab-gap: 1rem;
+}
+
+h2:has(+ .crew-name) {
+  color: hsl(var(--clr-light) / 0.5);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+}
+
+.crew-name {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+.crow-details {
+}
+
+.tabs--crew > * {
+  border-radius: 50%;
+  padding: 0.4rem;
+  background-color: hsl(var(--clr-light) / 0.8);
+  border: none;
+  cursor: pointer;
+}
+
+.tabs--crew > .active {
+  background-color: hsl(var(--clr-white));
 }
 
 .primary-nav {
@@ -474,7 +533,16 @@ select {
       ". image info .";
   }
 
-  .grid-container--destination > img {
+  .grid-container--crew {
+    justify-items: start;
+    grid-template-areas:
+      ". title title ."
+      ". content image ."
+      ". tabs image .";
+  }
+
+  .grid-container--destination > img,
+  .grid-container--crew .image--crew {
     max-width: 80%;
   }
 
