@@ -1,6 +1,27 @@
+import {  useSearchParams } from "react-router-dom";
 import DestinationToolbar from "../components/DestinationToolbar";
+import {getPageData} from "../scripts/getData";
+import { useEffect } from "react";
+import { DataType } from "../types/types";
 
+const pageType = "destinations";
 function Destination() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get("page");
+
+  useEffect(() => {
+    if (!page) {
+      setSearchParams({ page: "moon" });
+    }
+  }, [page]);
+
+  const data = page ? getPageData(pageType, page as DataType) : null;
+
+  if (!data) {
+    return <div>Page not found.</div>;
+  }
+
+  
   return (
     <main className={`grid-container grid-container--destination`}>
       <h1 className="page-title flex">
@@ -8,28 +29,26 @@ function Destination() {
         Pick your destination
       </h1>
 
-      <img src="assets/destination/image-moon.png" alt="the moon" />
+      <img src={data.images.png} alt="destination img" />
 
-      <DestinationToolbar />
+      <DestinationToolbar
+        page={page}
+        changePage={(page: string) => setSearchParams({ page })}
+      />
 
       <section className="info">
-        <h2 className="uppercase ff-serif fs-800">MOON</h2>
+        <h2 className="uppercase ff-serif fs-800">{data.name}</h2>
 
-        <p>
-          See our planet as you’ve never seen it before. A perfect relaxing trip
-          away to help regain perspective and come back refreshed. While you’re
-          there, take in some history by visiting the Luna 2 and Apollo 11
-          landing sites.
-        </p>
+        <p> {data.description}</p>
 
         <div className="flex additional-info">
           <div>
             <h3 className="text-accent fs-200">AVG. DISTANCE</h3>
-            <p className="fs-500 ff-serif uppercase">1234 KM</p>
+            <p className="fs-500 ff-serif uppercase">{data.distance}</p>
           </div>
           <div>
             <h3 className="text-accent fs-200">EST. TRAVEL TIME</h3>
-            <p className="fs-500 ff-serif uppercase">3 days</p>
+            <p className="fs-500 ff-serif uppercase">{data.travel}</p>
           </div>
         </div>
       </section>

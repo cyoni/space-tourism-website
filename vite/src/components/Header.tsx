@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 function Header() {
   const [visibility, setVisibility] = useState(false);
+
+  const { pathname } = useLocation();
+  console.log(pathname);
 
   const toggleMenu = () => {
     setVisibility((prev) => !prev);
@@ -29,23 +33,23 @@ function Header() {
           className="tabs primary-nav flex underline-tab"
           data-visibility={visibility}
         >
-          <li className="active">
+          <li className={pathname === "/" ? "active" : ""}>
             <a href="/">
               <span aria-hidden="true">00</span>Home
             </a>
           </li>
-          <li>
+          <li className={pathname === "/destination" ? "active" : ""}>
             <a href="/destination">
               <span aria-hidden="true">01</span>Destination
             </a>
           </li>
-          <li>
-            <a href="crew.html">
+          <li className={pathname === "/crew" ? "active" : ""}>
+            <a href="/crew">
               <span aria-hidden="true">02</span>Crew
             </a>
           </li>
-          <li>
-            <a href="technology.html">
+          <li className={pathname === "/technology" ? "active" : ""}>
+            <a href="/technology">
               <span aria-hidden="true">03</span>Technology
             </a>
           </li>
