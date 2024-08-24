@@ -266,6 +266,8 @@ select {
     "tabs"
     "image";
 
+  grid-template-rows: auto auto minmax(2rem, 4vh) auto;
+
   --grid-gap: 1.5rem;
 
   padding-bottom: 0;
@@ -296,7 +298,7 @@ select {
 .grid-container--destination > img,
 .grid-container--crew .image--crew {
   max-width: 60%;
- }
+}
 
 .grid-container--destination .additional-info {
   justify-content: center;
@@ -363,9 +365,6 @@ h2:has(+ .crew-name) {
 
 .crew-name {
   font-size: clamp(1.5rem, 3vw, 3rem);
-}
-
-.crow-details {
 }
 
 .tabs--crew > * {
@@ -473,13 +472,12 @@ h2:has(+ .crew-name) {
   nav {
     position: relative;
     width: auto;
-    background-color: hsl(var(--clr-dark) / 0.5);
     z-index: 10;
     height: auto;
   }
 
   nav ul {
-    margin-block: 2rem;
+    background-color: hsl(var(--clr-dark) / 0.5);
   }
 
   .grid-container--home {
@@ -511,8 +509,20 @@ h2:has(+ .crew-name) {
     order: 2;
   }
 
+  nav ul {
+    margin-block: 2rem;
+  }
+
   .home {
     background-image: url("./assets/home/background-home-desktop.jpg");
+  }
+
+  .destination {
+    background-image: url("./assets/destination/background-destination-desktop.jpg");
+  }
+
+  .tabs--crew {
+    padding-bottom: max(2rem, 10vh);
   }
 
   .crew {
@@ -564,16 +574,19 @@ h2:has(+ .crew-name) {
 
   .grid-container--crew {
     justify-items: start;
+    align-content: start;
     grid-template-areas:
       ". title title ."
       ". content image ."
       ". tabs image .";
+    grid-template-rows: auto 1fr auto;
   }
 
   .grid-container--destination > img,
   .grid-container--crew .image--crew {
-    max-width: 80%;
-    align-self: start;
+    max-width: 70%;
+    align-self: end;
+    justify-self: center;
     margin-top: 2rem;
   }
 
