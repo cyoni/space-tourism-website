@@ -1,5 +1,3 @@
-import data from "../../data.json";
-
 type ImageUrls = {
   png: string;
   webp: string;
@@ -13,7 +11,7 @@ type Destination = {
   travel: string;
 };
 
-type CrewMember = {
+type Crew = {
   name: string;
   images: ImageUrls;
   role: string;
@@ -34,8 +32,3 @@ type SpaceTravelData = {
   crew: CrewMember[];
   technology: Technology[];
 };
-
-type DataType = keyof typeof data;
-type PageType<T> = T extends keyof typeof data ? (typeof data[T][number]) : never;
-
-//type PageType<T> = typeof data[T]

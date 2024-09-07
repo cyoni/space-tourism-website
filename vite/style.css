@@ -8,6 +8,7 @@
   --fs-900: clamp(5rem, calc(12vw + 1rem), 9.375rem);
   --fs-800: 3.5rem;
   --fs-700: 1.5rem;
+  --fs-650: 2rem;
   --fs-600: 1rem;
   --fs-500: 1rem;
   --fs-400: 0.9375rem;
@@ -24,6 +25,7 @@
   :root {
     --fs-800: 5rem;
     --fs-700: 2.5rem;
+    --fs-650: 2rem;
     --fs-600: 1.5rem;
     --fs-500: 1.25rem;
     --fs-400: 1rem;
@@ -35,6 +37,7 @@
     /* font-sizes */
     --fs-800: 6.25rem;
     --fs-700: 3.5rem;
+    --fs-650: 3rem;
     --fs-600: 2rem;
     --fs-500: 1.75rem;
     --fs-400: 1.125rem;
@@ -87,6 +90,11 @@ p {
 .text-dark {
   color: hsl(var(--clr-dark));
 }
+
+.text-gray {
+  color: hsl(var(--clr-white) / 0.5);
+}
+
 .text-accent {
   color: hsl(var(--clr-light));
 }
@@ -128,6 +136,9 @@ p {
 }
 .fs-700 {
   font-size: var(--fs-700);
+}
+.fs-650 {
+  font-size: var(--fs-650);
 }
 .fs-600 {
   font-size: var(--fs-600);
@@ -295,6 +306,37 @@ select {
   --gap: 2rem;
 }
 
+.grid-container--technology {
+  .tabs--technology {
+    grid-area: tabs;
+
+    > * {
+      border: none;
+      border-radius: 50%;
+      width: 6rem;
+      aspect-ratio: 1;
+      font-size: 2rem;
+      border: 1px solid gray;
+      background-color: transparent;
+      cursor: pointer;
+      color: hsl(var(--clr-light));
+    }
+
+    > .active {
+      background-color: hsl(var(--clr-white));
+      color: hsl(var(--clr-dark));
+    }
+  }
+
+  .content--technology {
+    grid-area: content;
+  }
+
+  .image--technology {
+    grid-area: image;
+  }
+}
+
 .grid-container--destination > img,
 .grid-container--crew .image--crew {
   max-width: 60%;
@@ -387,6 +429,14 @@ h2:has(+ .crew-name) {
   --underline-gap: 2rem;
 }
 
+.grid-container--technology {
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
+}
+
 @media (max-width: 35rem) {
   /* ! ! ! Mobile only ! ! ! */
 
@@ -444,6 +494,13 @@ h2:has(+ .crew-name) {
 
   .primary-nav > .active {
     border-bottom: none;
+  }
+
+  .grid-container--technology {
+    .tabs--technology {
+      justify-self: center;
+      margin-block: 2rem;
+    }
   }
 }
 
@@ -529,6 +586,10 @@ h2:has(+ .crew-name) {
     background-image: url("./assets/crew/background-crew-desktop.jpg");
   }
 
+  .technology {
+    background-image: url("./assets/technology/background-technology-desktop.jpg");
+  }
+
   .primary-header::after {
     content: "";
     position: relative;
@@ -542,8 +603,6 @@ h2:has(+ .crew-name) {
 
   .grid-container {
     text-align: left;
-
-    border: 5px solid limegreen;
     display: grid;
     grid-template-columns: minmax(2rem, 1fr) minmax(0, 30rem) minmax(0, 30rem) minmax(
         2rem,
@@ -582,17 +641,53 @@ h2:has(+ .crew-name) {
     grid-template-rows: auto 1fr auto;
   }
 
+  .grid-container--technology {
+    grid-template-columns:
+      minmax(10rem, 1fr)
+      minmax(0, 9rem)
+      minmax(0, 29rem)
+      minmax(10rem, 30rem)
+      minmax(10rem, 1fr);
+    grid-template-areas:
+      ". title title . ."
+      ". tabs content image .";
+
+    padding-bottom: 6rem;
+
+    .page-title {
+      grid-area: title;
+      grid-column: 2 / -1;
+      justify-self: start;
+      align-self: start;
+    }
+
+    .tabs--technology {
+      justify-self: self-start;
+      flex-direction: column;
+    }
+  }
+
   .grid-container--destination > img,
   .grid-container--crew .image--crew {
     max-width: 70%;
-    align-self: end;
     justify-self: center;
     margin-top: 2rem;
+  }
+
+  .grid-container--crew .image--crew {
+    align-self: end;
   }
 
   .grid-container--destination .additional-info {
     --gap: min(8vw, 6rem);
     justify-content: flex-start;
+  }
+
+  .grid-container--technology .image--technology {
+    align-self: stretch;
+    justify-self: end;
+    max-width: 100%;
+    width: 100%;
   }
 }
 

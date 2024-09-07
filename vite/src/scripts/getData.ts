@@ -1,9 +1,6 @@
 import data from "../../data.json";
-import { PageType } from "../types/types";
+
 type DataType = typeof data;
-type PageTvvvvype = DataType[Pages] extends Array<infer T>
-  ? T | undefined
-  : never;
 type Pages = keyof DataType;
 
 export function getPage(key: Pages) {
@@ -16,10 +13,12 @@ export function getPage(key: Pages) {
   return page;
 }
 
-export function getPageData<T extends keyof typeof data>(
+export function getPageData<T extends "destinations" | "crew" | "technology">(
   key: T,
   pageName: string
-): PageType<T> | undefined {
+) {
+  if (!pageName) return null;
+
   const type = data[key];
 
   if (!type) {

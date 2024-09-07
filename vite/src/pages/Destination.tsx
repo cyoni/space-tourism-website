@@ -1,8 +1,7 @@
-import {  useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import DestinationToolbar from "../components/DestinationToolbar";
-import {getPageData} from "../scripts/getData";
+import { getPageData } from "../scripts/getData";
 import { useEffect } from "react";
-import { DataType } from "../types/types";
 
 const pageType = "destinations";
 function Destination() {
@@ -15,13 +14,12 @@ function Destination() {
     }
   }, [page]);
 
-  const data = page ? getPageData(pageType, page as DataType) : null;
+  const data = getPageData(pageType, page!) as Destination;
 
-  if (!data) {
+  if (!data || !page) {
     return <div>Page not found.</div>;
   }
 
-  
   return (
     <main className={`grid-container grid-container--destination`}>
       <h1 className="page-title flex">

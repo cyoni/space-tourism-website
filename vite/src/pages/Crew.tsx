@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getPageData, getPage } from "../scripts/getData";
-import { DataType, PageType } from "../types/types";
 
-const pageType = "crew" as const;
+const pageType = "crew";
 
 function Crew() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,7 +16,7 @@ function Crew() {
     }
   }, [page]);
 
-  const data = page ? getPageData<typeof pageType>(pageType, page) : null;
+  const data = getPageData(pageType, page!) as Crew;
 
   if (!data) {
     return <div>Page not found.</div>;
