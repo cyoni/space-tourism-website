@@ -307,13 +307,19 @@ select {
 }
 
 .grid-container--technology {
+  padding: 0;
+
+  .page-title {
+    margin-bottom: max(2rem, 6vh);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
   .tabs--technology {
     grid-area: tabs;
 
     > * {
       border: none;
       border-radius: 50%;
-      width: 6rem;
+      width: 5rem;
       aspect-ratio: 1;
       font-size: 2rem;
       border: 1px solid gray;
@@ -334,6 +340,15 @@ select {
 
   .image--technology {
     grid-area: image;
+    max-width: 100%;
+    * > {
+    }
+  }
+
+  .image--technology img,
+  .image--technology source {
+    height: 100%;
+    max-width: 100%;
   }
 }
 
@@ -435,6 +450,11 @@ h2:has(+ .crew-name) {
     "image"
     "tabs"
     "content";
+
+  .tabs--technology {
+    justify-self: center;
+    margin-block: 2rem;
+  }
 }
 
 @media (max-width: 35rem) {
@@ -475,7 +495,6 @@ h2:has(+ .crew-name) {
 
   /* applies different behaviour when it receives keyboard focus */
   .mobile-menu-toggle:focus-visible {
-    outline: 5px solid red;
     outline-offset: 5px;
   }
 
@@ -494,13 +513,6 @@ h2:has(+ .crew-name) {
 
   .primary-nav > .active {
     border-bottom: none;
-  }
-
-  .grid-container--technology {
-    .tabs--technology {
-      justify-self: center;
-      margin-block: 2rem;
-    }
   }
 }
 
@@ -538,7 +550,7 @@ h2:has(+ .crew-name) {
   }
 
   .grid-container--home {
-    padding-bottom: max(5rem, 13vh);
+    padding-bottom: max(7rem, 13vh);
     align-items: end;
   }
 
@@ -554,14 +566,14 @@ h2:has(+ .crew-name) {
 }
 
 /* tablet and desktop */
-@media ((min-width: 35rem) and (max-width: 44.99rem)) {
+@media ((min-width: 35rem) and (max-width: 49.99rem)) {
   .primary-nav a > span {
     display: none;
   }
 }
 
 /* desktop */
-@media (min-width: 45rem) {
+@media (min-width: 50.1rem) {
   nav {
     order: 2;
   }
@@ -613,12 +625,10 @@ h2:has(+ .crew-name) {
 
   .grid-container--home :first-child {
     grid-column: 2;
-    outline: 1px solid red;
   }
 
   .grid-container--home > :last-child {
     grid-column: 3;
-    outline: 1px solid yellow;
   }
 
   .grid-container--destination {
@@ -643,11 +653,11 @@ h2:has(+ .crew-name) {
 
   .grid-container--technology {
     grid-template-columns:
-      minmax(10rem, 1fr)
+      minmax(0.5rem, 1fr)
       minmax(0, 9rem)
       minmax(0, 29rem)
-      minmax(10rem, 30rem)
-      minmax(10rem, 1fr);
+      minmax(0, 30rem)
+      minmax(0.5rem, 1fr);
     grid-template-areas:
       ". title title . ."
       ". tabs content image .";
@@ -664,6 +674,9 @@ h2:has(+ .crew-name) {
     .tabs--technology {
       justify-self: self-start;
       flex-direction: column;
+      > * {
+        width: 6rem;
+      }
     }
   }
 
